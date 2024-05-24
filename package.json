@@ -12,7 +12,11 @@
     "@sap/xssec": "^3"
   },
   "devDependencies": {
-    "@cap-js/sqlite": "^1"
+    "@cap-js/sqlite": "^1",
+    "@sap/cds-dk": "^7"
+  },
+  "engines": {
+    "node": "^18"
   },
   "scripts": {
     "start": "cds-serve"
