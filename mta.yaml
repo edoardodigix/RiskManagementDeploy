@@ -27,7 +27,7 @@ modules:
           srv-url: ${default-url}
     requires:
       - name: cpapp-db
-      - name: cpapp-auth
+      - name: cpapp-uaa
 
   - name: cpapp-db-deployer
     type: hdb
@@ -43,7 +43,7 @@ resources:
     parameters:
       service: hana
       service-plan: hdi-shared
-  - name: cpapp-auth
+  - name: cpapp-uaa
     type: org.cloudfoundry.managed-service
     parameters:
       service: xsuaa
@@ -52,3 +52,12 @@ resources:
       config:
         xsappname: cpapp-${org}-${space}
         tenant-mode: dedicated
+        role-collections:
+         - name: 'RiskManager-${space}'
+           description: Manage Risks
+           role-template-references:
+             - $XSAPPNAME.RiskManager
+         - name: 'RiskViewer-${space}'
+           description: View Risks
+           role-template-references:
+             - $XSAPPNAME.RiskViewer
